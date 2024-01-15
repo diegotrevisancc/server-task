@@ -10,6 +10,10 @@ public class TaskServer {
         while (true) {
             Socket socket = server.accept(); //return a socket, this is like an endpoint
             System.out.println("Client Accepted at port " + socket.getPort());
+
+            TaskDivisor taskDivisor = new TaskDivisor(socket);
+            Thread clientThread = new Thread(taskDivisor); //every client should use his own thread
+            clientThread.start();
         }
     }
 }
