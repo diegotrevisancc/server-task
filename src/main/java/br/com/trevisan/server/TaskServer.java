@@ -14,7 +14,7 @@ public class TaskServer {
         //ExecutorService threadPool = Executors.newFixedThreadPool(4);
         //my connection pool will have 4 threads available. Only 4 clientSockets can use our application simultaneously
 
-        ExecutorService threadPool = Executors.newCachedThreadPool(); //grows dinamically.
+        ExecutorService threadPool = Executors.newCachedThreadPool(); //grows dynamically.
 
         while (true) {
             Socket socket = server.accept(); //return a socket, this is like an endpoint
