@@ -8,8 +8,11 @@ import java.util.Scanner;
 public class TaskDivisor implements Runnable{
     private Socket clientSocket;
 
-    public TaskDivisor(Socket socket) {
+    private TaskServer server;
+
+    public TaskDivisor(Socket socket, TaskServer server) {
         this.clientSocket = socket;
+        this.server = server;
     }
 
     @Override
@@ -30,6 +33,11 @@ public class TaskDivisor implements Runnable{
                     }
                     case "c2": {
                         outputClient.println("Server received command c2 with success");
+                        break;
+                    }
+                    case "end": {
+                        outputClient.println("Shutdown server");
+                        this.server.stop();
                         break;
                     }
                     default : {

@@ -99,7 +99,7 @@ public class GraphicInterface {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				output.println("good-bye");
+				output.println("end");
 			}
 		});
 		buttons.add(button);
