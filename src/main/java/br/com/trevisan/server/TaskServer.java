@@ -20,7 +20,7 @@ public class TaskServer {
         //ExecutorService threadPool = Executors.newFixedThreadPool(4);
         //my connection pool will have 4 threads available. Only 4 clientSockets can use our application simultaneously
 
-        this.threadPool = Executors.newCachedThreadPool(); //grows dynamically.
+        this.threadPool = Executors.newCachedThreadPool(new CustomizedThreadFactory()); //grows dynamically.
     }
 
     public void execute() throws IOException {

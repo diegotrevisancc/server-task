@@ -10,11 +10,11 @@ import java.util.concurrent.ExecutorService;
 
 
 public class TaskDivisor implements Runnable{
-    private Socket clientSocket;
+    private final Socket clientSocket;
 
-    private TaskServer server;
+    private final TaskServer server;
 
-    private ExecutorService serverThreadPool;
+    private final ExecutorService serverThreadPool;
 
     public TaskDivisor(Socket socket, TaskServer server, ExecutorService serverThreadPool) {
         this.clientSocket = socket;
