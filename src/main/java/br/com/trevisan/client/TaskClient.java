@@ -1,12 +1,11 @@
 package br.com.trevisan.client;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ClientTask {
+public class TaskClient {
     public static void main(String[] args) throws IOException, InterruptedException {
         Socket socket = new Socket("localhost", 12345);
         System.out.println("Connection Stabilised");
