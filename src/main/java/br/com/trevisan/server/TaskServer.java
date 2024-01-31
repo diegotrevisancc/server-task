@@ -6,9 +6,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class TaskServer {
-    public boolean executing;
-    private ServerSocket server;
-    private ExecutorService threadPool;
+    public volatile boolean executing;
+    private final ServerSocket server;
+    private final ExecutorService threadPool;
     public TaskServer() throws IOException {
         this.executing = true;
 
