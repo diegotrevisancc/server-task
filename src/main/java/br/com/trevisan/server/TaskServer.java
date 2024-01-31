@@ -29,7 +29,7 @@ public class TaskServer {
                 Socket socket = server.accept(); //return a socket, this is like an endpoint
                 System.out.println("Client Accepted at port " + socket.getPort());
 
-                TaskDivisor taskDivisor = new TaskDivisor(socket, this);
+                TaskDivisor taskDivisor = new TaskDivisor(socket, this, this.threadPool);
                 threadPool.execute(taskDivisor); // get one thread from threadPool and execute this runnable
             } catch (Exception exception) {
                 System.out.println("Server is closed");

@@ -1,8 +1,12 @@
 package br.com.trevisan.server;
+import br.com.trevisan.server.commands.C1Command;
+import br.com.trevisan.server.commands.C2Command;
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
 
 
 public class TaskDivisor implements Runnable{
@@ -10,9 +14,12 @@ public class TaskDivisor implements Runnable{
 
     private TaskServer server;
 
-    public TaskDivisor(Socket socket, TaskServer server) {
+    private ExecutorService serverThreadPool;
+
+    public TaskDivisor(Socket socket, TaskServer server, ExecutorService serverThreadPool) {
         this.clientSocket = socket;
         this.server = server;
+        this.serverThreadPool = serverThreadPool;
     }
 
     @Override
@@ -29,10 +36,14 @@ public class TaskDivisor implements Runnable{
                 switch (commandInput) {
                     case "c1": {
                         outputClient.println("Server received command c1 with success");
+                        C1Command c1 = new C1Command(outputClient); // only will send back confirmations
+                        this.serverThreadPool.execute(c1); //get one thread from thread pool and execute
                         break;
                     }
                     case "c2": {
                         outputClient.println("Server received command c2 with success");
+                        C2Command c2 = new C2Command(outputClient); // only will send back confirmations
+                        this.serverThreadPool.execute(c2); //get one thread from thread pool and execute
                         break;
                     }
                     case "end": {
